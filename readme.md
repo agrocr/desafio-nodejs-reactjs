@@ -45,6 +45,7 @@ Deve obrigatoriamente usar Postgresql.
 - É permitido o uso somente: React
 - Não versione a pasta `node_modules`
 - Todos os arquivos devem conter os comentários no código sobre o que aquele trecho faz, isto facilita muito a correção
+- Tempo máximo para o desafio é de 2 dias, 48 horas.
 
 #### Diferenciais:
 

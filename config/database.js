@@ -3,7 +3,7 @@ module.exports = {
   port: 5432,
   host: "localhost",
   schema: "public",
-  database: "teste",
+  database: "agrocr",
   username: "postgres",
   password: "postgres",
   logging: false

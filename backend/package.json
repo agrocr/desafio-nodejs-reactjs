@@ -1,0 +1,30 @@
+{
+  "name": "desafio-nodejs-reactjs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/robbymichael1/desafio-nodejs-reactjs.git",
+  "author": "Robby Michael <robbymichaelcavalheiro@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "sucrase-node src/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "pg": "^7.17.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.21.3",
+    "sucrase": "^3.12.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "nodemon": "^2.0.2"
+  }
+}

@@ -9,10 +9,12 @@ routes.get("/", (req, res) => {
 
 routes.get("/peoples", PeopleController.allPeoples);
 
+routes.get("/peoples/:id", PeopleController.findOnePeople);
+
 routes.post("/peoples/create", PeopleController.createPeople);
 
-/* routes.post("/peoples/update", PeopleController.updatePeople);
-
+routes.put("/peoples/update/:id", PeopleController.updatePeople);
+/*
 routes.post("/peoples/delete", PeopleController.deletePeople); */
 
 module.exports = routes;

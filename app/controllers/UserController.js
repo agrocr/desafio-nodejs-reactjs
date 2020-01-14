@@ -1,17 +1,17 @@
 // const sequelize = require("sequelize");
 
-const { Peoples } = require("../../app/models");
+const { Pessoa } = require("../../app/models");
 
 //Lista todos as pessoas
 module.exports = {
   async allPeoples(req, res) {
-    const people = await Peoples.findAll();
+    const pessoa = await Pessoa.findAll();
 
-    return res.json(people);
-  },
+    return res.json(pessoa);
+  }
 
   //Cria um usuário
-  async createUser(req, res) {
+  /* async createUser(req, res) {
     const peopleExists = await Peoples.findOne({
       where: { name: req.body.name }
     });
@@ -34,5 +34,5 @@ module.exports = {
     console.log(user);
 
     return res.json({ user, message: "User successfully inserted" });
-  }
+  } */
 };

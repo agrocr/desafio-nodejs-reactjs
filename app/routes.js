@@ -8,7 +8,7 @@ routes.get("/", (req, res) => {
 });
 
 routes.get("/peoples", UserController.allPeoples);
-
-routes.post("/peoples/create", UserController.createUser);
+/* 
+routes.post("/peoples/create", UserController.createUser); */
 
 module.exports = routes;

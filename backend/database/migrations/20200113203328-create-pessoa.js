@@ -35,8 +35,8 @@ module.exports = {
         type: DataTypes.STRING,
         unique: true
       },
-      status: {
-        allowNull: true,
+      ativo: {
+        allowNull: false,
         type: DataTypes.BOOLEAN
       },
       createdAt: {

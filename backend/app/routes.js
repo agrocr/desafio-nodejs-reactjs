@@ -11,4 +11,8 @@ routes.get("/peoples", PeopleController.allPeoples);
 
 routes.post("/peoples/create", PeopleController.createPeople);
 
+/* routes.post("/peoples/update", PeopleController.updatePeople);
+
+routes.post("/peoples/delete", PeopleController.deletePeople); */
+
 module.exports = routes;

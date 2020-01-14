@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define("User", {
-    cpf: DataTypes.STRING,
+  const Peoples = sequelize.define("pessoa", {
+    cpf: DataTypes.STRING(11),
     nome: DataTypes.STRING,
     idade: DataTypes.INTEGER,
     sexo: DataTypes.STRING(1),
@@ -10,5 +10,5 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING
   });
 
-  return User;
+  return Peoples;
 };

@@ -1,23 +1,24 @@
-/* //const sequelize = require("sequelize");
+// const sequelize = require("sequelize");
 
-const { User } = require("../../app/models");
+const { Peoples } = require("../../app/models");
 
-//Lista todos os usuários
+//Lista todos as pessoas
 module.exports = {
-  //Lista todos os usuários
-  async allUsers(req, res) {
-    const user = await User.findAll();
+  async allPeoples(req, res) {
+    const people = await Peoples.findAll();
 
-    return res.json(user);
+    return res.json(people);
   },
 
   //Cria um usuário
   async createUser(req, res) {
-    const userExists = await User.findOne({ where: { name: req.body.name } });
-    console.log(userExists);
+    const peopleExists = await Peoples.findOne({
+      where: { name: req.body.name }
+    });
+    console.log(peopleExists);
 
-    if (userExists) {
-      return res.status(400).json({ error: "User already exists." });
+    if (peopleExists) {
+      return res.status(400).json({ error: "People already exists." });
     }
 
     const emailExists = await User.findOne({
@@ -35,4 +36,3 @@ module.exports = {
     return res.json({ user, message: "User successfully inserted" });
   }
 };
- */

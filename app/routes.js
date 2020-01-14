@@ -7,8 +7,8 @@ routes.get("/", (req, res) => {
   return res.send("Serve is running...");
 });
 
-routes.get("/users", UserController.allUsers);
+routes.get("/peoples", UserController.allPeoples);
 
-routes.post("/users/create", UserController.createUser);
+routes.post("/peoples/create", UserController.createUser);
 
 module.exports = routes;

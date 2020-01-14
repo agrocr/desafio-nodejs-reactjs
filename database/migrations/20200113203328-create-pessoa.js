@@ -2,8 +2,8 @@
 
 module.exports = {
   up: (queryInterface, DataTypes) => {
-    return queryInterface.createTable("pessoa", {
-      id_pessoa: {
+    return queryInterface.createTable("Pessoa", {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -38,6 +38,14 @@ module.exports = {
       status: {
         allowNull: true,
         type: DataTypes.BOOLEAN
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE
       }
     });
   },

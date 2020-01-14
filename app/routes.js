@@ -1,14 +1,14 @@
 const express = require("express");
 const routes = express.Router();
 
-const UserController = require("./controllers/UserController");
+const PeopleController = require("./controllers/PeopleController");
 
 routes.get("/", (req, res) => {
-  return res.send("Serve is running...");
+  return res.send("Server is running...");
 });
 
-routes.get("/peoples", UserController.allPeoples);
-/* 
-routes.post("/peoples/create", UserController.createUser); */
+routes.get("/peoples", PeopleController.allPeoples);
+
+routes.post("/peoples/create", PeopleController.createPeople);
 
 module.exports = routes;

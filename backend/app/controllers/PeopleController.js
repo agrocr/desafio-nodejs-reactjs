@@ -6,15 +6,16 @@ module.exports = {
   async allPeoples(req, res) {
     const people = await Pessoa.findAll();
 
+    //Retorna todos os registros encontrados
     return res.json(people);
   },
 
   /* Listar todos os registros de um ID da tabela pessoa */
   async findOnePeople(req, res) {
-    //aramzena o id recebido na requisição em uma constante
+    //armazena o id recebido na requisição em uma constante
     const { id } = req.params;
 
-    //Procura se ID da requisição existe no banco
+    //Verifica se ID da requisição existe no banco
     const idExists = await Pessoa.findOne({
       where: { id }
     });
@@ -33,6 +34,7 @@ module.exports = {
 
   /* Criar registro na tabela pessoa */
   async createPeople(req, res) {
+    //Armazena os dados recebidos na requisição em constantes
     const { cpf } = req.body;
     const { nome } = req.body;
     const { email } = req.body;
@@ -59,7 +61,7 @@ module.exports = {
       return res.status(400).json({ error: "Ativo is empty." });
     }
 
-    //Procura se cpf da requisição ja existe no banco
+    //Verifica se cpf da requisição ja existe no banco
     const cpfExists = await Pessoa.findOne({
       where: { cpf }
     });
@@ -69,7 +71,7 @@ module.exports = {
       return res.status(400).json({ error: "CPF already exists." });
     }
 
-    //Procura se o email da requisição ja existe no banco
+    //Verifica se o email da requisição ja existe no banco
     const emailExists = await Pessoa.findOne({
       where: { email }
     });
@@ -83,11 +85,12 @@ module.exports = {
     const people = await Pessoa.create(req.body);
 
     //retorna os dados registrados e mensagem de sucesso
-    return res.json({ people, message: "People successfully inserted" });
+    return res.json({ people, message: "Person successfully inserted" });
   },
 
   /* Alterar pessoa pelo ID */
   async updatePeople(req, res) {
+    //Armazena os dados recebidos na requisição em constantes
     const { id } = req.params;
     const { cpf } = req.body;
     const { nome } = req.body;
@@ -97,6 +100,7 @@ module.exports = {
     const { email } = req.body;
     const { ativo } = req.body;
 
+    //verifica se o cpf veio vazio na requisição
     if (!cpf) {
       return res.status(400).json({ error: "CPF is empty." });
     }
@@ -116,7 +120,17 @@ module.exports = {
       return res.status(400).json({ error: "Ativo is empty." });
     }
 
-    //Procura se cpf da requisição ja existe no banco
+    //Verifica se ID da requisição existe no banco
+    const idExists = await Pessoa.findOne({
+      where: { id }
+    });
+
+    //Se o ID nao existe no banco retorna a requisição com o erro
+    if (!idExists) {
+      return res.status(400).json({ error: "ID not found" });
+    }
+
+    //Verifica se cpf da requisição ja existe no banco
     const cpfExists = await Pessoa.findOne({
       where: { cpf: req.body.cpf }
     });
@@ -126,7 +140,7 @@ module.exports = {
       return res.status(400).json({ error: "CPF already exists." });
     }
 
-    //Procura se o email da requisição ja existe no banco
+    //Verifica se o email da requisição ja existe no banco
     const emailExists = await Pessoa.findOne({
       where: { email: req.body.email }
     });
@@ -145,6 +159,28 @@ module.exports = {
     );
 
     //retorna o ID que teve os registros alterados e mensagem de sucesso
-    return res.json({ id: id, message: "People updated" });
+    return res.json({ id: id, message: "Person has been updated" });
+  },
+
+  /*  Deleta registro da tabela pessoa */
+  async deleteOnePeople(req, res) {
+    //armazena o id recebido na requisição em uma constante
+    const { id } = req.params;
+
+    //Verifica se o ID da requisição existe no banco
+    const idExists = await Pessoa.findOne({
+      where: { id }
+    });
+
+    //Se o ID nao existe no banco retorna a requisição com o erro
+    if (!idExists) {
+      return res.status(400).json({ error: "ID not found" });
+    }
+
+    //Busca no banco os registro do ID recebido na requisição
+    const people = await Pessoa.destroy({ where: { id } });
+
+    //retorna o ID que teve os registros deletador e mensagem de sucesso
+    return res.json({ id: id, message: "Person has been deleted" });
   }
 };

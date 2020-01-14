@@ -1,5 +1,14 @@
 #INSTRUÇÕES INICIAIS
 
-1 - Criar base de dados: - Execute o comando SQL que encontra-se na pasta /backend/schema/scripts
+1 - CRIAR BASE DE DADOS:
 
-2 - Inst
+- Execute o comando SQL, no seu SGBD, que encontra-se na pasta /backend/schema/scripts
+- Pelo terminal/CMD, dentro da pasta "/backend" execute o comando "npx sequelize db:migrate"
+
+2 - INSTALAR DEPENDENCIAS BACKEND:
+
+- Pelo terminal/CMD, dentro da pasta /backend execute o comando "npm install"
+
+#INICIAR SERVIDORES
+
+1 - Pelo terminal/CMD, dentro da pasta /backend execute o comando "npm start"

@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 
 //inicia o express
@@ -7,6 +8,7 @@ app.use(express.json());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 
 //todos os tipo de requisições são redirecionados para o arquivos de rotas
 app.use("/api", require("./app/routes"));

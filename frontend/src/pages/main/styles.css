@@ -24,10 +24,10 @@
 .people-list article a {
   height: 42px;
   border-radius: 5px;
-  border: 2px solid #da552f;
+  border: 2px solid #024795;
   background: none;
   margin-top: 10px;
-  color: #da552f;
+  color: #024795;
   font-weight: bold;
   font-size: 16px;
   text-decoration: none;
@@ -38,6 +38,6 @@
 }
 
 .people-list article a:hover {
-  background: #da552f;
+  background: #024795;
   color: #fff;
 }

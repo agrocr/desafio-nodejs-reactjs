@@ -12,6 +12,6 @@ app.use(bodyParser.json());
 app.use("/api", require("./app/routes"));
 
 //Servidor irá ficar "ouvindo" a porta 3000
-app.listen(3000);
+app.listen(3001);
 
 console.log("Server is running...");

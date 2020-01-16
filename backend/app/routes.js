@@ -9,6 +9,8 @@ routes.get("/", (req, res) => {
 
 routes.get("/people", PeopleController.allPeoples);
 
+routes.get("/people/paginate", PeopleController.allPeoplesPaginate);
+
 routes.get("/people/:id", PeopleController.findOnePeople);
 
 routes.post("/people/create", PeopleController.createPeople);

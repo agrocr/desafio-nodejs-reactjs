@@ -10,6 +10,28 @@ module.exports = {
     return res.json(people);
   },
 
+  async allPeoplesPaginate(req, res) {
+    const { page = 1 } = req.query;
+
+    const options = {
+      /* 
+      attributes: [], */
+      page, // Default 1
+      paginate: 10 // Default 25
+      /*  order: [
+        ["name", "DESC"]
+      ],
+      where: {
+        name: { [Op.like]: `%elliot%` }
+      } */
+    };
+
+    const people = await Pessoa.paginate(options);
+
+    //Retorna todos os registros encontrados
+    return res.json(people);
+  },
+
   /* Listar todos os registros de um ID da tabela pessoa */
   async findOnePeople(req, res) {
     //armazena o id recebido na requisição em uma constante

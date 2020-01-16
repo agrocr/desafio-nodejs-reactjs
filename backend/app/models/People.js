@@ -1,3 +1,5 @@
+const sequelizePaginate = require("sequelize-paginate");
+
 module.exports = (sequelize, DataTypes) => {
   const Pessoa = sequelize.define(
     "Pessoa",
@@ -15,5 +17,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
+  sequelizePaginate.paginate(Pessoa);
   return Pessoa;
 };

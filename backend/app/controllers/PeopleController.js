@@ -14,22 +14,14 @@ module.exports = {
     const { page = 1 } = req.query;
 
     const options = {
-      /* 
-      attributes: [], */
-      page, // Default 1
-      paginate: 10 // Default 25
-      /*  order: [
-        ["name", "DESC"]
-      ],
-      where: {
-        name: { [Op.like]: `%elliot%` }
-      } */
+      page,
+      paginate: 10
     };
 
     const people = await Pessoa.paginate(options);
 
-    //Retorna todos os registros encontrados
-    return res.json(people);
+    //Retorna todos os registros até o limite da pagina e numero da pagina que está
+    return res.json({ people, pageNumber: page });
   },
 
   /* Listar todos os registros de um ID da tabela pessoa */

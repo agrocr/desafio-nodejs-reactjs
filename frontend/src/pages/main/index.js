@@ -76,7 +76,10 @@ export default class Main extends Component {
             Anterior
           </button>
           <button
-            disabled={parseInt(pageNumber) === peopleInfo.pages}
+            disabled={
+              parseInt(pageNumber) === peopleInfo.pages ||
+              peopleInfo.pages === 0
+            }
             onClick={this.nextPage}
           >
             Proximo

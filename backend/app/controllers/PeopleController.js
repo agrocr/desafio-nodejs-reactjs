@@ -144,28 +144,28 @@ module.exports = {
       return res.status(400).json({ error: "ID not found" });
     }
 
-    //Verifica se cpf da requisição ja existe no banco
+    //Verifica se cpf da requisição existe no banco
     const cpfExists = await Pessoa.findOne({
-      where: { cpf: req.body.cpf }
+      where: { cpf }
     });
 
-    //Se o cpf já existe no banco retorna a requisição com o erro
-    if (cpfExists) {
+    //Se o cpf a ser alterado ja existe no banco mas nao é o que ja está cadastrado para esse id, retorna a requisição com o erro
+    if ((cpfExists) && (idExists.cpf != cpf)) {
       return res.status(400).json({ error: "CPF already exists." });
     }
 
-    //Verifica se o email da requisição ja existe no banco
+    //Verifica se o email da requisição existe no banco
     const emailExists = await Pessoa.findOne({
       where: { email: req.body.email }
     });
 
-    //Se o email já existe no banco retorna a requisição com o erro
-    if (emailExists) {
+    //Se o email a ser alterado ja existe no banco mas nao é o que ja está cadastrado para esse id, retorna a requisição com o erro
+    if ((emailExists) && (idExists.email != email)) {
       return res.status(400).json({ error: "Email already exists." });
     }
 
     //O registro com o dados da requsição filtradndo pelo ID recebido na requisição, se passar pelas validações anteriores
-    const peopleUpadated = await Pessoa.update(
+    await Pessoa.update(
       { nome, cpf, nome, idade, sexo, telefone, email, ativo },
       {
         where: { id }
@@ -192,7 +192,7 @@ module.exports = {
     }
 
     //Busca no banco os registro do ID recebido na requisição
-    const people = await Pessoa.destroy({ where: { id } });
+    await Pessoa.destroy({ where: { id } });
 
     //retorna o ID que teve os registros deletador e mensagem de sucesso
     return res.json({ id: id, message: "Person has been deleted" });

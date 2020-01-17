@@ -1,14 +1,8 @@
 .people {
-  max-width: 700px;
+  max-width: 500px;
   margin: 20px auto 0;
   padding: 0 20px;
 }
-
-/* .people-list {
-  max-width: 700px;
-  margin: 20px auto 0;
-  padding: 0 20px;
-} */
 
 .people-list article {
   background: #fff;
@@ -28,7 +22,7 @@
 }
 
 .people-list article a {
-  height: 42px;
+  height: 42px; 
   border-radius: 5px;
   border: 2px solid #024795;
   background: none;

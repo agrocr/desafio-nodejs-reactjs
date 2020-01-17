@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import "./styles.css";
 
@@ -45,8 +46,13 @@ export default class CreatePerson extends Component {
               <option value="false">INATIVO</option>
             </select>
           </div>
-          <div className="button-group">            
-            <button type="button">Voltar</button>
+          <div className="button-group">     
+            <Link to={"/"}>
+              <button type="button">
+                Voltar
+              </button>
+            </Link>       
+            
             <button type="submit">Salvar</button>
           </div>
         </form>

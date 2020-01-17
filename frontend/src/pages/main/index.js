@@ -56,14 +56,19 @@ export default class Main extends Component {
     const { people, pageNumber, peopleInfo } = this.state;
 
     return (
-      <div className="people-list">
-        {people.map(people => (
-          <article key={people.id}>
-            <strong>{people.nome}</strong>
-            <p>{people.email}</p>
-            <a href="">Acessar</a>
-          </article>
-        ))}
+      <div className="people">
+        <div className="new-person">
+          <button>Novo</button>
+        </div>
+        <div className="people-list">
+          {people.map(people => (
+            <article key={people.id}>
+              <strong>{people.nome}</strong>
+              <p>{people.email}</p>
+              <a href="">Acessar</a>
+            </article>
+          ))}
+        </div>
         <div className="actions">
           <button disabled={pageNumber == 1} onClick={this.prevPage}>
             Anterior

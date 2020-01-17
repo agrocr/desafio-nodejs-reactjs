@@ -1,8 +1,14 @@
-.people-list {
+.people {
   max-width: 700px;
   margin: 20px auto 0;
   padding: 0 20px;
 }
+
+/* .people-list {
+  max-width: 700px;
+  margin: 20px auto 0;
+  padding: 0 20px;
+} */
 
 .people-list article {
   background: #fff;
@@ -42,13 +48,13 @@
   color: #fff;
 }
 
-.people-list .actions {
+.people .actions {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 }
 
-.people-list .actions button {
+.people .actions button {
   padding: 10px;
   border-radius: 5px;
   border: 0;
@@ -59,15 +65,36 @@
   cursor: pointer;
 }
 
-.people-list .actions button[disabled] {
+.people .actions button[disabled] {
   opacity: 0.5;
   cursor: default;
 }
 
-.people-list .actions button:hover {
+.people .actions button:hover {
   opacity: 0.75;
 }
 
-.people-list .actions button[disabled]:hover {
+.people .actions button[disabled]:hover {
   opacity: 0.5;
+}
+
+.people .new-person {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.people .new-person button {
+  padding: 10px;
+  border-radius: 5px;
+  border: 0;
+  background: #024795;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.people .new-person button:hover {
+  opacity: 0.75;
 }

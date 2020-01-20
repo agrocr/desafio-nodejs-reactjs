@@ -6,7 +6,7 @@ function Notifications(type, message) {
     case "success":
       toast.success(message, {
         position: "top-right",
-        autoClose: 4000,
+        autoClose: 3500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -16,7 +16,7 @@ function Notifications(type, message) {
     case "info":
       toast.info(message, {
         position: "top-right",
-        autoClose: 4000,
+        autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -26,7 +26,7 @@ function Notifications(type, message) {
     case "warning":
       toast.warning(message, {
         position: "top-right",
-        autoClose: 4000,
+        autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -36,7 +36,7 @@ function Notifications(type, message) {
     case "error":
       toast.error(message, {
         position: "top-right",
-        autoClose: 4000,
+        autoClose: false,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

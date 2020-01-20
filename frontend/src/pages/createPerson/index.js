@@ -36,13 +36,25 @@ function CreatePerson() {
 
     console.log(response.data);
     if (response.data.message === "Person successfully inserted") {
-      Notifications("sucess", "Cadastro efetuado com sucesso!");
+      Notifications("success", "Cadastro efetuado com sucesso!");
+      setNome("");
+      setCpf("");
+      setIdade("");
+      setSexo("");
+      setTelefone("");
+      setEmail("");
+      setAtivo("");
     } else if (response.data.error === "CPF already exists") {
       Notifications("warning", "O CPF digitado já está cadastrado, verifique!");
     } else if (response.data.error === "Email already exists") {
       Notifications(
         "warning",
         "O Email digitado já está cadastrado, verifique!"
+      );
+    } else {
+      Notifications(
+        "error",
+        `Ops, algo deu errado, envie o erro a seguir para o setor de TI: ${response.data.error} `
       );
     }
   }
@@ -58,7 +70,6 @@ function CreatePerson() {
             id="nome"
             value={nome}
             onChange={e => setNome(e.target.value)}
-            required
           />
         </div>
 

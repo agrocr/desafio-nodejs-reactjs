@@ -36,7 +36,7 @@ module.exports = {
 
     //Se o ID nao existe no banco retorna a requisição com o erro
     if (!idExists) {
-      return res.status(400).json({ error: "ID not found" });
+      return res.json({ error: "ID not found" });
     }
 
     //Busca no banco os registro do ID recebido na requisição
@@ -116,22 +116,22 @@ module.exports = {
 
     //verifica se o cpf veio vazio na requisição
     if (!cpf) {
-      return res.status(400).json({ error: "CPF is empty" });
+      return res.json({ error: "CPF is empty" });
     }
 
     //verifica se o nome veio vazio na requisição
     if (!nome) {
-      return res.status(400).json({ error: "Nome is empty" });
+      return res.json({ error: "Nome is empty" });
     }
 
     //verifica se a idade veio vazio na requisição
     if (!idade) {
-      return res.status(400).json({ error: "Idade is empty" });
+      return res.json({ error: "Idade is empty" });
     }
 
     //verifica se o ativo veio vazio na requisição
     if (!ativo) {
-      return res.status(400).json({ error: "Ativo is empty" });
+      return res.json({ error: "Ativo is empty" });
     }
 
     //Verifica se ID da requisição existe no banco
@@ -141,7 +141,7 @@ module.exports = {
 
     //Se o ID nao existe no banco retorna a requisição com o erro
     if (!idExists) {
-      return res.status(400).json({ error: "ID not found" });
+      return res.json({ error: "ID not found" });
     }
 
     //Verifica se cpf da requisição existe no banco
@@ -151,7 +151,7 @@ module.exports = {
 
     //Se o cpf a ser alterado ja existe no banco mas nao é o que ja está cadastrado para esse id, retorna a requisição com o erro
     if (cpfExists && idExists.cpf != cpf) {
-      return res.status(400).json({ error: "CPF already exists" });
+      return res.json({ error: "CPF already exists" });
     }
 
     //Verifica se o email da requisição existe no banco
@@ -161,7 +161,7 @@ module.exports = {
 
     //Se o email a ser alterado ja existe no banco mas nao é o que ja está cadastrado para esse id, retorna a requisição com o erro
     if (emailExists && idExists.email != email) {
-      return res.status(400).json({ error: "Email already exists" });
+      return res.json({ error: "Email already exists" });
     }
 
     //O registro com o dados da requsição filtradndo pelo ID recebido na requisição, se passar pelas validações anteriores
@@ -188,7 +188,7 @@ module.exports = {
 
     //Se o ID nao existe no banco retorna a requisição com o erro
     if (!idExists) {
-      return res.status(400).json({ error: "ID not found" });
+      return res.json({ error: "ID not found" });
     }
 
     //Busca no banco os registro do ID recebido na requisição

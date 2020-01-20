@@ -9,13 +9,35 @@ export default class Person extends Component {
     person: {}
   };
 
-  async componentDidMount() {
+  /* async componentDidMount() {
     const { id } = this.props.match.params;
 
     const response = await api.get(`people/${id}`);
 
     this.setState({ person: response.data });
+  } */
+
+  async componentDidMount() {
+    this.loadPerson();
+    this.deletePerson()
   }
+
+  loadPerson = async () => { 
+    const { id } = this.props.match.params;
+
+    const response = await api.get(`people/${id}`);
+
+    this.setState({ person: response.data });
+  };
+
+  deletePerson = async () => { 
+    const { id } = this.state.person;
+
+    const response = await api.delete(`people/delete/${id}`);
+
+    console.log(response);
+    
+  };
 
   render() {
     const { person } = this.state;
@@ -46,6 +68,7 @@ export default class Person extends Component {
       <div className="person">
         <div className="person-info">
           <h1>{person.nome}</h1>
+          <p>Codigo: {person.id}</p>
           <p>CPF: {person.cpf}</p>
           <p>Idade: {person.idade}</p>
           <p>Sexo: {sexo}</p>
@@ -57,7 +80,7 @@ export default class Person extends Component {
           <Link to="/" className="linkReturn">
             <button className="btnReturn">Voltar</button>
           </Link>
-          <button className="btnDelete">Excluir</button>
+          <button className="btnDelete" onClick={this.deletePerson}>Excluir</button>
           <Link to="/update/person" className="linkEdit">
             <button>Editar</button>
           </Link>

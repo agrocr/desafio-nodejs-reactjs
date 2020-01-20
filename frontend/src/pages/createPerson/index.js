@@ -155,7 +155,9 @@ function CreatePerson() {
         </div>
         <div className="button-group">
           <Link to={"/"}>
-            <button type="button">Voltar</button>
+            <button type="button" className="btnReturn">
+              Voltar
+            </button>
           </Link>
 
           <button type="submit">Salvar</button>

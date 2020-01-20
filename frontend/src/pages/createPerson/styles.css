@@ -1,4 +1,4 @@
-#app{
+#app {
   max-width: 340px;
   margin: 20px auto 0;
   padding: 0 20px;
@@ -19,12 +19,11 @@
 #app form {
   margin-top: 30px;
 }
-#app form .input-block + .input-block{
+#app form .input-block + .input-block {
   margin-top: 20px;
 }
 
-
-#app form .input-block label{
+#app form .input-block label {
   color: #acacac;
   font-size: 14px;
   font-weight: bold;
@@ -56,7 +55,7 @@
   grid-template-columns: 1fr 1fr;
 }
 
-#app form .button-group button{
+#app form .button-group button {
   width: 100%;
   border: 0;
   background: #024795;
@@ -66,9 +65,8 @@
   font-weight: bold;
   color: #fff;
   cursor: pointer;
-
 }
 
-#app form button:hover{
+#app form button:hover {
   opacity: 0.75;
 }

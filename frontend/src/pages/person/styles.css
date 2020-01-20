@@ -29,8 +29,35 @@
   margin-top: 20px;
 }
 
-.person .return a {
+.person .return .linkReturn {
+  padding-right: 5px;
+}
+
+.person .return .linkEdit {
   padding-left: 5px;
+}
+
+.person .return .btnDelete {
+  padding-right: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 0;
+  background: #9c0000;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.person .return .btnReturn {
+  padding: 10px;
+  border-radius: 5px;
+  border: 0;
+  background: #feae05;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .person .return button {

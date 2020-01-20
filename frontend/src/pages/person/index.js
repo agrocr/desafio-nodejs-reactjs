@@ -54,10 +54,11 @@ export default class Person extends Component {
           <p>Status: {status}</p>
         </div>
         <div className="return">
-          <Link to="/">
-            <button>Voltar</button>
+          <Link to="/" className="linkReturn">
+            <button className="btnReturn">Voltar</button>
           </Link>
-          <Link to="/update/person">
+          <button className="btnDelete">Excluir</button>
+          <Link to="/update/person" className="linkEdit">
             <button>Editar</button>
           </Link>
         </div>

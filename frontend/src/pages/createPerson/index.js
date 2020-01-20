@@ -1,8 +1,11 @@
 import React, { Component, useState } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import "./styles.css";
+
 import api from "../../services/api";
+import Notifications from "../../components/Notifications";
 
 function CreatePerson() {
   const [nome, setNome] = useState("");
@@ -32,6 +35,16 @@ function CreatePerson() {
     console.log(nome, cpf, idade, sexo, telefone, email, ativo);
 
     console.log(response.data);
+    if (response.data.message === "Person successfully inserted") {
+      Notifications("sucess", "Cadastro efetuado com sucesso!");
+    } else if (response.data.error === "CPF already exists") {
+      Notifications("warning", "O CPF digitado já está cadastrado, verifique!");
+    } else if (response.data.error === "Email already exists") {
+      Notifications(
+        "warning",
+        "O Email digitado já está cadastrado, verifique!"
+      );
+    }
   }
 
   return (
@@ -136,6 +149,7 @@ function CreatePerson() {
           <button type="submit">Salvar</button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 }

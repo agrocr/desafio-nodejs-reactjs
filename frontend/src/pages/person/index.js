@@ -57,7 +57,9 @@ export default class Person extends Component {
           <Link to="/" className="linkReturn">
             <button className="btnReturn">Voltar</button>
           </Link>
-          <button className="btnDelete">Excluir</button>
+          <button className="btnDelete" onClick={}>
+            Excluir
+          </button>
           <Link to="/update/person" className="linkEdit">
             <button>Editar</button>
           </Link>

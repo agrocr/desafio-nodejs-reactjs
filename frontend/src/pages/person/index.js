@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import api from "../../services/api";
 import { Link } from "react-router-dom";
-import { confirmAlert } from 'react-confirm-alert';
+import { confirmAlert } from "react-confirm-alert";
 import { ToastContainer } from "react-toastify";
 
-
 import "./styles.css";
-import 'react-confirm-alert/src/react-confirm-alert.css';
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 import Notifications from "../../components/Notifications";
 import NotificationRedirect from "../../components/NotificationRedirect";
-
 
 export default class Person extends Component {
   state = {
@@ -29,7 +27,7 @@ export default class Person extends Component {
     this.loadPerson();
   }
 
-  loadPerson = async () => { 
+  loadPerson = async () => {
     const { id } = this.props.match.params;
 
     const response = await api.get(`people/${id}`);
@@ -37,41 +35,45 @@ export default class Person extends Component {
     this.setState({ person: response.data });
   };
 
-  confirmDelete = async () => { 
-    console.log('dentro confirm');
-    
+  confirmDelete = async () => {
+    console.log("dentro confirm");
+
     confirmAlert({
-      title: 'Atenção',
-      message: 'Tem certeza que deseja excluir esse cadastro?',
+      title: "Atenção",
+      message: "Tem certeza que deseja excluir esse cadastro?",
       buttons: [
         {
-          label: 'Sim',
+          label: "Sim",
           onClick: async () => {
             const { id } = this.state.person;
-  
+
             const response = await api.delete(`people/delete/${id}`);
             console.log(response);
-            if (response.data.message === 'Person has been deleted') {
-              NotificationRedirect("success", "Cadastro excluido com sucesso!", "/", "http://localhost:3000/");
+            if (response.data.message === "Person has been deleted") {
+              NotificationRedirect(
+                "success",
+                "Cadastro excluido com sucesso!",
+                "/"
+              );
               // this.props.history.push('/')
             } else {
-              Notifications("error", `Ops, algo deu errado, por favor envie o erro a seguir para o setor de TI: ${response.data}`);
+              Notifications(
+                "error",
+                `Ops, algo deu errado, por favor envie o erro a seguir para o setor de TI: ${response.data}`
+              );
             }
           }
         },
         {
-          label: 'Não',
-          onClick: () => {
-          }
+          label: "Não",
+          onClick: () => {}
         }
       ]
-    });    
+    });
   };
 
-  deletePerson = async () => {
-    
-  }
-  
+  deletePerson = async () => {};
+
   render() {
     const { person } = this.state;
     var status;
@@ -113,7 +115,9 @@ export default class Person extends Component {
           <Link to="/" className="linkReturn">
             <button className="btnReturn">Voltar</button>
           </Link>
-          <button className="btnDelete" onClick={this.confirmDelete}>Excluir</button>
+          <button className="btnDelete" onClick={this.confirmDelete}>
+            Excluir
+          </button>
           <Link to="/update/person" className="linkEdit">
             <button>Editar</button>
           </Link>

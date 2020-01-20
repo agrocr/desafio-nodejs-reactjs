@@ -75,6 +75,7 @@ export default class Main extends Component {
           <button disabled={parseInt(pageNumber) === 1} onClick={this.prevPage}>
             Anterior
           </button>
+          <label>Page: {pageNumber}</label>
           <button
             disabled={
               parseInt(pageNumber) === peopleInfo.pages ||

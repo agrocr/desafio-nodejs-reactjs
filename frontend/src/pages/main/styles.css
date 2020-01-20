@@ -7,7 +7,7 @@
 .people-list article {
   background: #fff;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 3px;
   padding: 20px;
   margin-bottom: 20px;
 }
@@ -22,8 +22,8 @@
 }
 
 .people-list article a {
-  height: 42px; 
-  border-radius: 5px;
+  height: 42px;
+  border-radius: 3px;
   border: 2px solid #024795;
   background: none;
   margin-top: 10px;
@@ -50,7 +50,7 @@
 
 .people .actions button {
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 3px;
   border: 0;
   background: #024795;
   color: #fff;
@@ -59,6 +59,15 @@
   cursor: pointer;
 }
 
+.people .actions label {
+  padding: 10px;
+  border-radius: 3px;
+  border: 0;
+  color: #024795;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
 .people .actions button[disabled] {
   opacity: 0.5;
   cursor: default;
@@ -80,7 +89,7 @@
 
 .people .new-person button {
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 3px;
   border: 0;
   background: #024795;
   color: #fff;

@@ -9,6 +9,7 @@ import "./styles.css";
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 import Notifications from "../../components/Notifications";
+import NotificationRedirect from "../../components/NotificationRedirect";
 
 
 export default class Person extends Component {
@@ -45,14 +46,18 @@ export default class Person extends Component {
       buttons: [
         {
           label: 'Sim',
-          onClick: () => {
+          onClick: async () => {
             const { id } = this.state.person;
   
             const response = await api.delete(`people/delete/${id}`);
             console.log(response);
-            Notifications("success", "Cadastro excluido com sucesso!");
+            if (response.data.message === 'Person has been deleted') {
+              NotificationRedirect("success", "Cadastro excluido com sucesso!", "/", "http://localhost:3000/");
+              // this.props.history.push('/')
+            } else {
+              Notifications("error", `Ops, algo deu errado, por favor envie o erro a seguir para o setor de TI: ${response.data}`);
+            }
           }
-          
         },
         {
           label: 'Não',

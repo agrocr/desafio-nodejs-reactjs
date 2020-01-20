@@ -42,7 +42,8 @@ function Notifications(type, message) {
         pauseOnHover: true,
         draggable: true
       });
-      break;
+      break; 
+
     case "default":
       toast(message, {
         position: "top-right",

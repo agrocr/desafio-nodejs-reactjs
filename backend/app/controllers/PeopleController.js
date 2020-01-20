@@ -1,5 +1,6 @@
 //Importa model de pessoas
 const { Pessoa } = require("../models");
+var CpfValidation = require("../validation/CpfValidation");
 
 module.exports = {
   /* Listar todos os registros da tabela pessoa */
@@ -73,6 +74,10 @@ module.exports = {
     //verifica se o ativo veio vazio na requisição
     if (!ativo) {
       return res.json({ error: "Ativo is empty" });
+    }
+
+    if (CpfValidation(cpf) === false) {
+      return res.json({ error: "Invalid cpf" });
     }
 
     //Verifica se cpf da requisição ja existe no banco

@@ -46,10 +46,17 @@ function CreatePerson() {
       setAtivo("");
     } else if (response.data.error === "CPF already exists") {
       Notifications("warning", "O CPF digitado já está cadastrado, verifique!");
+    } else if (response.data.error === "Invalid cpf") {
+      Notifications("warning", "O CPF digitado é inválido, verifique!");
     } else if (response.data.error === "Email already exists") {
       Notifications(
         "warning",
         "O Email digitado já está cadastrado, verifique!"
+      );
+    } else if (response.data.error) {
+      Notifications(
+        "error",
+        `Ops, Page: Create person, ERROR: ${response.data.error}`
       );
     } else {
       Notifications(
@@ -81,6 +88,8 @@ function CreatePerson() {
             id="cpf"
             value={cpf}
             onChange={e => setCpf(e.target.value)}
+            pattern="[0-9]{11}"
+            title="Preencha apenas com números e exatamente 11 caracteres."
             required
           />
         </div>
@@ -92,6 +101,7 @@ function CreatePerson() {
             id="idade"
             type="number"
             min="0"
+            max="120"
             value={idade}
             onChange={e => setIdade(e.target.value)}
             required
@@ -121,8 +131,11 @@ function CreatePerson() {
           <input
             name="telefone"
             id="telefone"
+            type="tel"
             value={telefone}
             onChange={e => setTelefone(e.target.value)}
+            pattern="[0-9]{10,11}"
+            title="Preencha apenas com números, no mínimo 10 e no máximo 11 caracteres. (Ex.: 11998764321)"
           />
         </div>
 
@@ -134,6 +147,9 @@ function CreatePerson() {
             type="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            title="Preencha um email valido. Contendo: 'cacteres'@'caracteres'.'dominio'"
+            placeholder="seumelhorendereco@email.com"
             required
           />
         </div>

@@ -71,11 +71,17 @@ module.exports = {
       return res.json({ error: "Idade is empty" });
     }
 
+    //verifica se o email veio vazio na requisição
+    if (!email) {
+      return res.json({ error: "Email is empty" });
+    }
+
     //verifica se o ativo veio vazio na requisição
     if (!ativo) {
       return res.json({ error: "Ativo is empty" });
     }
 
+    //Verifica se o CPF da requisição é valido
     if (CpfValidation(cpf) === false) {
       return res.json({ error: "Invalid cpf" });
     }
@@ -134,6 +140,11 @@ module.exports = {
       return res.json({ error: "Idade is empty" });
     }
 
+    //verifica se o email veio vazio na requisição
+    if (!email) {
+      return res.json({ error: "Email is empty" });
+    }
+
     //verifica se o ativo veio vazio na requisição
     if (!ativo) {
       return res.json({ error: "Ativo is empty" });
@@ -147,6 +158,11 @@ module.exports = {
     //Se o ID nao existe no banco retorna a requisição com o erro
     if (!idExists) {
       return res.json({ error: "ID not found" });
+    }
+
+    //Verifica se o CPF da requisição é valido
+    if (CpfValidation(cpf) === false) {
+      return res.json({ error: "Invalid cpf" });
     }
 
     //Verifica se cpf da requisição existe no banco

@@ -102,10 +102,11 @@ export default class Main extends Component {
             <input
               name="personId"
               id="personId"
-              type="text"
+              type="number"
               value={personId}
               onChange={e => this.setState({ personId: e.target.value })}
               onKeyUp={this.inputEmpty}
+              min="0"
               placeholder="Código do registro"
             ></input>
             <button type="button" onClick={this.findPerson}>

@@ -77,8 +77,6 @@ export default class Person extends Component {
     });
   };
 
-  deletePerson = async () => {};
-
   render() {
     const { person } = this.state;
     var status;
@@ -97,10 +95,14 @@ export default class Person extends Component {
     if (person.sexo === "M") {
       sexo = "MASCULINO";
     } else {
-      if (person.ativo === "F") {
+      if (person.sexo === "F") {
         sexo = "FEMININO";
       } else {
-        sexo = "INDEFINIDO";
+        if (person.sexo === "I") {
+          sexo = "PREFIRO NÃO DIZER";
+        } else {
+          sexo = "INDEFINIDO";
+        }
       }
     }
 
@@ -123,7 +125,7 @@ export default class Person extends Component {
           <button className="btnDelete" onClick={this.confirmDelete}>
             Excluir
           </button>
-          <Link to="/update/person" className="linkEdit">
+          <Link to={`/update/person/${person.id}`} className="linkEdit">
             <button>Editar</button>
           </Link>
         </div>

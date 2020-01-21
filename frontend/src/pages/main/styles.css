@@ -81,13 +81,14 @@
   opacity: 0.5;
 }
 
-.people .new-person {
+.people .person {
   display: flex;
-  justify-content: flex-end;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  margin: 40px 0 20px 0;
+  padding: 0;
 }
 
-.people .new-person button {
+.people .person button {
   padding: 10px;
   border-radius: 3px;
   border: 0;
@@ -98,6 +99,22 @@
   cursor: pointer;
 }
 
-.people .new-person button:hover {
+.people .person form {
+  padding: 0px;
+}
+
+.people .person form input {
+  height: 100%;
+  font-size: 14px;
+  background-color: #fafafa;
+  color: #666;
+  border: 0;
+  border-bottom: 1px solid #eee;
+}
+.people .person form button {
+  margin-left: 10px;
+}
+
+.people .person button:hover {
   opacity: 0.75;
 }

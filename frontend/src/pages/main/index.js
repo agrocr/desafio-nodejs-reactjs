@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 import api from "../../services/api";
 import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import "./styles.css";
+
+import Notifications from "../../components/Notifications";
 
 export default class Main extends Component {
   state = {
     people: [],
     peopleInfo: {},
-    pageNumber: 1
+    pageNumber: 1,
+    personId: ""
   };
 
   componentDidMount() {
@@ -23,6 +27,8 @@ export default class Main extends Component {
     /* const { docs } = response.data.people; */
     const { docs, ...peopleInfo } = response.data.people;
     const { pageNumber } = response.data;
+
+    console.log(docs, peopleInfo, pageNumber);
 
     this.setState({ people: docs, peopleInfo, pageNumber });
   };
@@ -52,12 +58,61 @@ export default class Main extends Component {
     this.loadPeople(nextPage);
   };
 
+  findPerson = async () => {
+    const { personId } = this.state;
+    const response = await api.get(`/people/${personId}`);
+
+    // console.log(response.data);
+    if (personId !== "") {
+      if (response.data.error === "ID not found") {
+        // this.loadPeople();
+        Notifications("info", "Nenhum registro encontrado.");
+      } else {
+        const docs = [response.data];
+        const peopleInfo = { pages: 1, total: 1 };
+        const pageNumber = "1";
+
+        console.log(docs, peopleInfo, pageNumber);
+
+        this.setState({ people: docs, peopleInfo, pageNumber });
+      }
+    } else {
+      this.loadPeople();
+    }
+  };
+
+  inputEmpty = () => {
+    const { personId } = this.state;
+    console.log(personId);
+
+    if (personId == "") {
+      console.log("inputEmpty");
+
+      this.loadPeople();
+    }
+  };
+
   render() {
-    const { people, pageNumber, peopleInfo } = this.state;
+    const { people, pageNumber, peopleInfo, personId } = this.state;
 
     return (
       <div className="people">
-        <div className="new-person">
+        <div className="person">
+          <form>
+            <input
+              name="personId"
+              id="personId"
+              type="text"
+              value={personId}
+              onChange={e => this.setState({ personId: e.target.value })}
+              onKeyUp={this.inputEmpty}
+              placeholder="Código do registro"
+            ></input>
+            <button type="button" onClick={this.findPerson}>
+              Pesquisar
+            </button>
+          </form>
+
           <Link to="/create/person">
             <button>Novo</button>
           </Link>
@@ -86,6 +141,7 @@ export default class Main extends Component {
             Proximo
           </button>
         </div>
+        <ToastContainer />
       </div>
     );
   }

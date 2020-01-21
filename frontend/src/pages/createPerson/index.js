@@ -1,8 +1,10 @@
 import React, { Component, useState } from "react";
 import { Link } from "react-router-dom";
+import { confirmAlert } from "react-confirm-alert";
 import { ToastContainer } from "react-toastify";
 
 import "./styles.css";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 import api from "../../services/api";
 import Notifications from "../../components/Notifications";
@@ -18,53 +20,64 @@ function CreatePerson() {
 
   async function handleAddPerson(e) {
     e.preventDefault();
-
-    console.log(
-      `nome:${nome}, cpf:${cpf}, idade:${idade}, sexo:${sexo}, telefone:${telefone}, email:${email}, ativo:${ativo}`
-    );
-
-    const response = await api.post("/people/create", {
-      nome,
-      cpf,
-      idade,
-      sexo,
-      telefone,
-      email,
-      ativo
+    confirmAlert({
+      title: "Atenção",
+      message: "Tem certeza que deseja salvar esse cadastro?",
+      buttons: [
+        {
+          label: "Sim",
+          onClick: async () => {
+            const response = await api.post("/people/create", {
+              nome,
+              cpf,
+              idade,
+              sexo,
+              telefone,
+              email,
+              ativo
+            });
+        
+            if (response.data.message === "Person successfully inserted") {
+              Notifications("success", "Cadastro efetuado com sucesso!");
+              setNome("");
+              setCpf("");
+              setIdade("");
+              setSexo("");
+              setTelefone("");
+              setEmail("");
+              setAtivo("");
+            } else if (response.data.error === "CPF already exists") {
+              Notifications("warning", "O CPF digitado já está cadastrado, verifique!");
+            } else if (response.data.error === "Invalid cpf") {
+              Notifications("warning", "O CPF digitado é inválido, verifique!");
+            } else if (response.data.error === "Email already exists") {
+              Notifications(
+                "warning",
+                "O Email digitado já está cadastrado, verifique!"
+              );
+            } else if (response.data.error) {
+              Notifications(
+                "error",
+                `Ops, Page: Create person, ERROR: ${response.data.error}`
+              );
+            } else {
+              Notifications(
+                "error",
+                `Ops, algo deu errado, envie o erro a seguir para o setor de TI: ${response.data.error} `
+              );
+            }
+          }
+        },
+        {
+          label: "Não",
+          onClick: () => {}
+        }
+      ]
     });
-    console.log(nome, cpf, idade, sexo, telefone, email, ativo);
-
-    console.log(response.data);
-    if (response.data.message === "Person successfully inserted") {
-      Notifications("success", "Cadastro efetuado com sucesso!");
-      setNome("");
-      setCpf("");
-      setIdade("");
-      setSexo("");
-      setTelefone("");
-      setEmail("");
-      setAtivo("");
-    } else if (response.data.error === "CPF already exists") {
-      Notifications("warning", "O CPF digitado já está cadastrado, verifique!");
-    } else if (response.data.error === "Invalid cpf") {
-      Notifications("warning", "O CPF digitado é inválido, verifique!");
-    } else if (response.data.error === "Email already exists") {
-      Notifications(
-        "warning",
-        "O Email digitado já está cadastrado, verifique!"
-      );
-    } else if (response.data.error) {
-      Notifications(
-        "error",
-        `Ops, Page: Create person, ERROR: ${response.data.error}`
-      );
-    } else {
-      Notifications(
-        "error",
-        `Ops, algo deu errado, envie o erro a seguir para o setor de TI: ${response.data.error} `
-      );
-    }
+    
   }
+
+  
 
   return (
     <div id="app">

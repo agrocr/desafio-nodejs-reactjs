@@ -1,3 +1,5 @@
+/* Função para validar CPF com base no calculo da SERASA */
+ 
 var CpfValidation = strCPF => {
   var Soma;
   var Resto;

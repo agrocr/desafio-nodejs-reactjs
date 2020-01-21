@@ -8,6 +8,7 @@ import "./styles.css";
 import Notifications from "../../components/Notifications";
 
 export default class Main extends Component {
+  //declara os states
   state = {
     people: [],
     peopleInfo: {},
@@ -15,79 +16,79 @@ export default class Main extends Component {
     personId: ""
   };
 
+  //Executa que está dentro do metodo toda vez que o componente é rederizado
   componentDidMount() {
     this.loadPeople();
   }
 
+  //objeto que pega o dados dos registros por meio da API e armazena no state
   loadPeople = async (page = 1) => {
+    //requisição na API
     const response = await api.get(`/people/paginate?page=${page}`);
 
-    //console.log(response.data.pageNumber);
-
-    /* const { docs } = response.data.people; */
+    //Armazena as respostas em constantes
     const { docs, ...peopleInfo } = response.data.people;
     const { pageNumber } = response.data;
 
-    console.log(docs, peopleInfo, pageNumber);
-
+    //seta os dados da response no state
     this.setState({ people: docs, peopleInfo, pageNumber });
   };
 
+  //objeto que faz a mudança para a pagina anterior
   prevPage = () => {
     const { pageNumber } = this.state;
-
+    
+    
     const prevPage = parseInt(pageNumber) - 1;
 
     if (prevPage < 1) return;
-
+    
+    //chama objeto que pega o dados dos registros por meio da API e armazena no state 
     this.loadPeople(prevPage);
   };
 
+  //objeto que faz a mudança para a próxima pagina 
   nextPage = () => {
     const { peopleInfo, pageNumber } = this.state;
-    //console.log(this.state.pageNumber);
-    /* 
-    let pageNumber = 1; */
+
     const nextPage = parseInt(pageNumber) + 1;
-    // console.log(nextPage);
 
     if (nextPage > peopleInfo.pages) return;
 
-    /*console.log(pageNumber); */
-
+    //chama objeto que pega o dados dos registros por meio da API e armazena no state 
     this.loadPeople(nextPage);
   };
 
+  //metodo que busca o registro pelo ID
   findPerson = async () => {
     const { personId } = this.state;
+    //requisição na api
     const response = await api.get(`/people/${personId}`);
 
-    // console.log(response.data);
+    
     if (personId !== "") {
-      if (response.data.error === "ID not found") {
-        // this.loadPeople();
+      if (response.data.error === "ID not found") { 
+        //apresenta a notificação que nao encontrou resgistros se a requisição da api retornar que nao encontrou registros
         Notifications("info", "Nenhum registro encontrado.");
       } else {
+        //se encontrar registros muda os dados do state
         const docs = [response.data];
         const peopleInfo = { pages: 1, total: 1 };
         const pageNumber = "1";
 
-        console.log(docs, peopleInfo, pageNumber);
-
         this.setState({ people: docs, peopleInfo, pageNumber });
       }
     } else {
+      //chama objeto que pega o dados dos registros por meio da API e armazena no state 
       this.loadPeople();
     }
   };
 
   inputEmpty = () => {
     const { personId } = this.state;
-    console.log(personId);
 
     if (personId == "") {
-      console.log("inputEmpty");
-
+      //chama objeto que pega o dados dos registros por meio da API e armazena no state 
       this.loadPeople();
     }
   };
@@ -105,21 +106,22 @@ export default class Main extends Component {
               type="number"
               value={personId}
               onChange={e => this.setState({ personId: e.target.value })}
-              onKeyUp={this.inputEmpty}
+              onKeyUp={this.inputEmpty /*A solta a tecla chamar o metodo inputEmpty*/}
               min="0"
               placeholder="Código do registro"
             ></input>
-            <button type="button" onClick={this.findPerson}>
+            <button type="button" onClick={this.findPerson} /*Ao clina no botao chama o metodo que pesquisa resgistos do usuario  */>
               Pesquisar
             </button>
           </form>
 
-          <Link to="/create/person">
+          <Link to="/create/person" /*Ao clicar no botao redireciona para a pagina de novo cadastro */>
             <button>Novo</button>
           </Link>
         </div>
         <div className="people-list">
-          {people.map(people => (
+          {/*Percorre o array people do state e acada iteração renderiza o html ja com os outros dados armazenados no state */
+          people.map(people => (
             <article key={people.id}>
               <strong>{people.nome}</strong>
               <p>{people.email}</p>
@@ -128,21 +130,25 @@ export default class Main extends Component {
           ))}
         </div>
         <div className="actions">
-          <button disabled={parseInt(pageNumber) === 1} onClick={this.prevPage}>
+          <button disabled={
+            /*Desabilita o botao de pagina anterior se a pagina atual for a primeira*/
+            parseInt(pageNumber) === 1 
+            } onClick={this.prevPage /*Chamar o metodo prevPage ao clicar no botao*/}>
             Anterior
           </button>
           <label>Page: {pageNumber}</label>
           <button
             disabled={
+              /*Desabilita o botao de proxima pagina  se a pagina atual for a ultima */
               parseInt(pageNumber) === peopleInfo.pages ||
               peopleInfo.pages === 0
             }
-            onClick={this.nextPage}
+            onClick={this.nextPage /*Chamar o metodo nextPage ao clicar no botao*/}
           >
             Proximo
           </button>
         </div>
-        <ToastContainer />
+        <ToastContainer /*Container de notificações*//>
       </div>
     );
   }

@@ -11,6 +11,7 @@ module.exports = {
     return res.json(people);
   },
 
+  /* Listar todos os registros da tabela pessoa com paginação*/
   async allPeoplesPaginate(req, res) {
     const { page = 1 } = req.query;
 

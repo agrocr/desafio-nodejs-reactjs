@@ -1,5 +1,6 @@
-import React from 'react';
-import { Redirect } from "react-router-dom";
+/* Component criado a partir da biblioteca react-toastify
+para fazer redirecionamento da pagina em questão ao fechar a notificação*/
+
 import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";

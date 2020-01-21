@@ -1,3 +1,7 @@
+/* Component criado a partir da biblioteca react-toastify
+para para nao ser preciso chamar a biblioteca e passar todas as suas configurações por parametro
+a cada vez que usar*/
+
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

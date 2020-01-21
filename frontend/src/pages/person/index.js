@@ -25,9 +25,9 @@ export default class Person extends Component {
     const response = await api.get(`people/${id}`);
     
     this.setState({ person: response.data });
-    console.log(this.state.person);
   };
 
+  //metodo com atirbutos do state vazios
   confirmDelete = async () => {
     const deletedPerson = {
       id: "",
@@ -42,6 +42,7 @@ export default class Person extends Component {
       updatedAt: ""
     };
 
+    //gera o alerta de confirmação para excluir o registro
     confirmAlert({
       title: "Atenção",
       message: "Tem certeza que deseja excluir esse cadastro?",
@@ -52,16 +53,19 @@ export default class Person extends Component {
             const { id } = this.state.person;
 
             const response = await api.delete(`people/delete/${id}`);
-            console.log(response);
+            
             if (response.data.message === "Person has been deleted") {
+              //esvazio os dados do state
               this.setState({ person: deletedPerson });
-
+              
+              //Gera notificação de sucesso na tela e redireciona para a pagina principal
               NotificationRedirect(
                 "success",
                 "Cadastro excluido com sucesso!",
                 "/"
               );
             } else {
+              //gera notificação de erro na tela
               Notifications(
                 "error",
                 `Ops, algo deu errado, por favor envie o erro a seguir para o setor de TI: ${response.data}`
@@ -82,6 +86,7 @@ export default class Person extends Component {
     var status;
     var sexo;
 
+    //altera o valor da variavel ativo com base nos possiveis dados do sexo no state
     if (person.ativo === true) {
       status = "ATIVO";
     } else {
@@ -92,6 +97,7 @@ export default class Person extends Component {
       }
     }
 
+    //altera o valor da variavel sexo com base nos possiveis dados do sexo no state
     if (person.sexo === "M") {
       sexo = "MASCULINO";
     } else {
@@ -109,7 +115,7 @@ export default class Person extends Component {
     return (
       <div className="person">
         <div className="person-info">
-          <h1>{person.nome}</h1>
+          <h1>{person.nome /*Preenche a tag com os dados do state*/}</h1>
           <p>Codigo: {person.id}</p>
           <p>CPF: {person.cpf}</p>
           <p>Idade: {person.idade}</p>

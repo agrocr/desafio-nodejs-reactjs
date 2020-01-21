@@ -1,12 +1,13 @@
 import React from "react";
 
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom"; //importa bliblioteca de rotas
 
 import Main from "./pages/main";
 import Person from "./pages/person";
 import CreatePerson from "./pages/createPerson";
 import UpdatePerson from "./pages/updatePerson";
 
+/*Com essa bliblioteca e esses componentes so abrir uma rota da aplica por vez */
 const Routes = () => (
   <BrowserRouter>
     <Switch>

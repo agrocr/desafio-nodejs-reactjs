@@ -10,6 +10,7 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import Notifications from "../../components/Notifications";
 
 export default class UpdatePerson extends Component {
+  //cria o state
   state = {
     id: "",
     cpf: "",

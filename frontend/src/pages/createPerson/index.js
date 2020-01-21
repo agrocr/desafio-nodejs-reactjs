@@ -10,6 +10,7 @@ import api from "../../services/api";
 import Notifications from "../../components/Notifications";
 
 function CreatePerson() {
+  //cria os states do clico de vida
   const [nome, setNome] = useState("");
   const [cpf, setCpf] = useState("");
   const [idade, setIdade] = useState("");
@@ -18,9 +19,12 @@ function CreatePerson() {
   const [email, setEmail] = useState("");
   const [ativo, setAtivo] = useState("");
 
+  //Função executada no submit
   async function handleAddPerson(e) {
+    //Preve o comportamento padrao do submit não deixando redirecionar para uma nova pagina
     e.preventDefault();
     
+    //Chama  a biblioteca de alert antes de chamar a rota de Create da API
     confirmAlert({
       title: "Atenção",
       message: "Tem certeza que deseja salvar esse cadastro?",
@@ -28,6 +32,7 @@ function CreatePerson() {
         {
           label: "Sim",
           onClick: async () => {
+            //Se o usuario clicar SIM chamar a rota de Create da API
             const response = await api.post("/people/create", {
               nome,
               cpf,
@@ -37,7 +42,8 @@ function CreatePerson() {
               email,
               ativo
             });
-        
+            
+            //Se a resposta for de sucesso, apresenta na tela a notificação de sucesso e esvazia os states
             if (response.data.message === "Person successfully inserted") {
               Notifications("success", "Cadastro efetuado com sucesso!");
               setNome("");
@@ -47,20 +53,26 @@ function CreatePerson() {
               setTelefone("");
               setEmail("");
               setAtivo("");
+            //Se a resposta for de erro, apresenta na tela a notificação de erro referente
             } else if (response.data.error === "CPF already exists") {
               Notifications("warning", "O CPF digitado já está cadastrado, verifique!");
+            //Se a resposta for de erro, apresenta na tela a notificação de erro referente
             } else if (response.data.error === "Invalid cpf") {
+            //Se a resposta for de erro, apresenta na tela a notificação de erro referente
               Notifications("warning", "O CPF digitado é inválido, verifique!");
             } else if (response.data.error === "Email already exists") {
+            //Se a resposta for de erro, apresenta na tela a notificação de erro referente
               Notifications(
                 "warning",
                 "O Email digitado já está cadastrado, verifique!"
               );
+            //Se a resposta for de erro, apresenta na tela a notificação de erro referente
             } else if (response.data.error) {
               Notifications(
                 "error",
                 `Ops, Page: Create person, ERROR: ${response.data.error}`
               );
+            //Se a resposta for de erro, apresenta na tela a notificação de erro referente
             } else {
               Notifications(
                 "error",
@@ -71,6 +83,7 @@ function CreatePerson() {
         },
         {
           label: "Não",
+            //Se o usuario clicar NAO fecha a tela de alerta
           onClick: () => {}
         }
       ]
@@ -83,14 +96,14 @@ function CreatePerson() {
   return (
     <div id="app">
       <strong>Cadastrar</strong>
-      <form onSubmit={handleAddPerson}>
+      <form onSubmit={handleAddPerson}/*Executa a funcao handleAddPerson no submit do form*/>
         <div className="input-block">
           <label htmlFor="nome">Nome:</label>
           <input
             name="nome"
             id="nome"
-            value={nome}
-            onChange={e => setNome(e.target.value)}
+            value={nome} /*Valor do input é o que estiver no state*/
+            onChange={e => setNome(e.target.value)} /*A cada mudança no input muda o valor do state referente a esse input*/
             required
           />
         </div>
@@ -185,7 +198,7 @@ function CreatePerson() {
           </select>
         </div>
         <div className="button-group">
-          <Link to={"/"}>
+          <Link to={"/"} /*Utiliza um componento da bibliotec react-route-dom, para redirecionar para a pagina em questao ao clicar no botao*/> 
             <button type="button" className="btnReturn">
               Voltar
             </button>

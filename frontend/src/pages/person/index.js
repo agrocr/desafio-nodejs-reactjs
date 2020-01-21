@@ -15,14 +15,6 @@ export default class Person extends Component {
     person: {}
   };
 
-  /* async componentDidMount() {
-    const { id } = this.props.match.params;
-
-    const response = await api.get(`people/${id}`);
-
-    this.setState({ person: response.data });
-  } */
-
   async componentDidMount() {
     this.loadPerson();
   }
@@ -33,10 +25,22 @@ export default class Person extends Component {
     const response = await api.get(`people/${id}`);
 
     this.setState({ person: response.data });
+    console.log(this.state.person);
   };
 
   confirmDelete = async () => {
-    console.log("dentro confirm");
+    const deletedPerson = {
+      id: "",
+      cpf: "",
+      nome: "",
+      idade: "",
+      sexo: "",
+      telefone: "",
+      email: "",
+      ativo: "",
+      createdAt: "",
+      updatedAt: ""
+    };
 
     confirmAlert({
       title: "Atenção",
@@ -50,12 +54,13 @@ export default class Person extends Component {
             const response = await api.delete(`people/delete/${id}`);
             console.log(response);
             if (response.data.message === "Person has been deleted") {
+              this.setState({ person: deletedPerson });
+
               NotificationRedirect(
                 "success",
                 "Cadastro excluido com sucesso!",
                 "/"
               );
-              // this.props.history.push('/')
             } else {
               Notifications(
                 "error",

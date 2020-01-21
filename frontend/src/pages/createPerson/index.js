@@ -20,6 +20,7 @@ function CreatePerson() {
 
   async function handleAddPerson(e) {
     e.preventDefault();
+    
     confirmAlert({
       title: "Atenção",
       message: "Tem certeza que deseja salvar esse cadastro?",

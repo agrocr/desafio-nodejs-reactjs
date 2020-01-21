@@ -23,7 +23,7 @@ export default class Person extends Component {
     const { id } = this.props.match.params;
 
     const response = await api.get(`people/${id}`);
-
+    
     this.setState({ person: response.data });
     console.log(this.state.person);
   };

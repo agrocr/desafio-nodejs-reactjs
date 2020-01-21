@@ -8,7 +8,6 @@ import "./styles.css";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
 import Notifications from "../../components/Notifications";
-import NotificationRedirect from "../../components/NotificationRedirect";
 
 export default class UpdatePerson extends Component {
   state = {
@@ -38,84 +37,47 @@ export default class UpdatePerson extends Component {
 
   handleAlterPerson = async e => {
     e.preventDefault();
+
     const person = this.state;
-
-    console.log(
-      `nome:${person.nome}, cpf:${person.cpf}, idade:${person.idade}, sexo:${person.sexo}, telefone:${person.telefone}, email:${person.email}, ativo:${person.ativo}`
-    );
-
-    const response = await api.put(`/people/update/${person.id}`, {
-      nome: person.nome,
-      cpf: person.cpf,
-      idade: person.idade,
-      sexo: person.sexo,
-      telefone: person.telefone,
-      email: person.email,
-      ativo: person.ativo
-    });
-    console.log(
-      person.nome,
-      person.cpf,
-      person.idade,
-      person.sexo,
-      person.telefone,
-      person.email,
-      person.ativo
-    );
-
-    console.log(response.data);
-    if (response.data.message === "Person has been updated") {
-      Notifications("success", "Cadastro alterado com sucesso!");
-      this.loadPerson();
-    } else if (response.data.error === "CPF already exists") {
-      Notifications("warning", "O CPF digitado já está cadastrado, verifique!");
-    } else if (response.data.error === "Invalid cpf") {
-      Notifications("warning", "O CPF digitado é inválido, verifique!");
-    } else if (response.data.error === "Email already exists") {
-      Notifications(
-        "warning",
-        "O Email digitado já está cadastrado, verifique!"
-      );
-    } else if (response.data.error) {
-      Notifications(
-        "error",
-        `Ops, Page: Create person, ERROR: ${response.data.error}`
-      );
-    } else {
-      Notifications(
-        "error",
-        `Ops, algo deu errado, envie o erro a seguir para o setor de TI: ${response.data.error} `
-      );
-    }
-  };
-
-  /*
-
-  confirmDelete = async () => {
-    console.log("dentro confirm");
-
+    
     confirmAlert({
       title: "Atenção",
-      message: "Tem certeza que deseja excluir esse cadastro?",
+      message: "Tem certeza que deseja salvar esse cadastro?",
       buttons: [
         {
           label: "Sim",
           onClick: async () => {
-            const { id } = this.state.person;
-
-            const response = await api.delete(`people/delete/${id}`);
-            console.log(response);
-            if (response.data.message === "Person has been deleted") {
-              NotificationRedirect(
-                "success",
-                "Cadastro excluido com sucesso!",
-                "/"
+            const response = await api.put(`/people/update/${person.id}`, {
+              nome: person.nome,
+              cpf: person.cpf,
+              idade: person.idade,
+              sexo: person.sexo,
+              telefone: person.telefone,
+              email: person.email,
+              ativo: person.ativo
+            });
+        
+            if (response.data.message === "Person has been updated") {
+              Notifications("success", "Cadastro alterado com sucesso!");
+              this.loadPerson();
+            } else if (response.data.error === "CPF already exists") {
+              Notifications("warning", "O CPF digitado já está cadastrado, verifique!");
+            } else if (response.data.error === "Invalid cpf") {
+              Notifications("warning", "O CPF digitado é inválido, verifique!");
+            } else if (response.data.error === "Email already exists") {
+              Notifications(
+                "warning",
+                "O Email digitado já está cadastrado, verifique!"
               );
-              // this.props.history.push('/')
+            } else if (response.data.error) {
+              Notifications(
+                "error",
+                `Ops, Page: Create person, ERROR: ${response.data.error}`
+              );
             } else {
               Notifications(
                 "error",
-                `Ops, algo deu errado, por favor envie o erro a seguir para o setor de TI: ${response.data}`
+                `Ops, algo deu errado, envie o erro a seguir para o setor de TI: ${response.data} `
               );
             }
           }
@@ -126,7 +88,7 @@ export default class UpdatePerson extends Component {
         }
       ]
     });
-  };*/
+  };
 
   render() {
     const person = this.state;

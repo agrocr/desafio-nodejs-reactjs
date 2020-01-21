@@ -9,7 +9,7 @@ function NotificationRedirect(type, message, path) {
     case "success":
       toast.success(message, {
         position: "top-right",
-        autoClose: 2500,
+        autoClose: 2100,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

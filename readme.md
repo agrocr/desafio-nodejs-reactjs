@@ -13,4 +13,5 @@
 # INICIAR SERVIDORES
 
 1 - Pelo terminal/CMD, dentro da pasta /backend execute o comando "npm start"
+
 2 - Pelo terminal/CMD, dentro da pasta /frontend execute o comando "npm start"

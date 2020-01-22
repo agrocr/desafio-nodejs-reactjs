@@ -13,6 +13,8 @@ routes.get("/people/paginate", PeopleController.allPeoplesPaginate);
 
 routes.get("/people/:id", PeopleController.findOnePeople);
 
+routes.get("/peopleLikeSearch", PeopleController.allPeopleLikeName);
+
 routes.post("/people/create", PeopleController.createPeople);
 
 routes.put("/people/update/:id", PeopleController.updatePeople);

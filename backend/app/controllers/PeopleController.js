@@ -1,5 +1,6 @@
 //Importa model de pessoas
 const { Pessoa } = require("../models");
+const Sequelize = require("sequelize");
 var CpfValidation = require("../validation/CpfValidation");
 
 module.exports = {
@@ -24,6 +25,25 @@ module.exports = {
 
     //Retorna todos os registros até o limite da pagina e numero da pagina que está
     return res.json({ people, pageNumber: page });
+  },
+
+  async allPeopleLikeName(req, res) {
+    const Op = Sequelize.Op;
+
+    const { nome } = req.query;
+
+    var query = `%${nome}%`;
+
+    const people = await Pessoa.findAll({
+      where: { nome: { [Op.like]: query } }
+    });
+    console.log(people);
+
+    if (people && people.length === 0) {
+      return res.status(204).json();
+    }
+    //Retorna todos os registros encontrados
+    return res.json(people);
   },
 
   /* Listar todos os registros de um ID da tabela pessoa */

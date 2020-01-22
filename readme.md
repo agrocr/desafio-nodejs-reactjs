@@ -19,9 +19,13 @@
 #Banco de dados
 
 DB_HOST=localhost
+
 DB_PORT=5432
+
 DB_NAME=
+
 DB_USERNAME=
+
 DB_PASS=
 
 # INICIAR SERVIDORES

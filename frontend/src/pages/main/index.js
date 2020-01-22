@@ -60,9 +60,14 @@ export default class Main extends Component {
 
   //metodo que busca o registro pelo ID
   findPerson = async () => {
+    console.log("aqi");
+
     const { personName } = this.state;
     //requisição na api
-    const response = await api.get(`/peopleLikeSearch?nome=${personName}`);
+    const response = await api.get(
+      `/peopleLikeSearch?nome=${personName.toLowerCase()}`
+    );
+    console.log(response);
 
     if (personName !== "") {
       if (response.data === "" && response.status === 204) {

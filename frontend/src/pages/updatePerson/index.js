@@ -40,7 +40,7 @@ export default class UpdatePerson extends Component {
     e.preventDefault();
 
     const person = this.state;
-    
+
     confirmAlert({
       title: "Atenção",
       message: "Tem certeza que deseja salvar esse cadastro?",
@@ -48,21 +48,27 @@ export default class UpdatePerson extends Component {
         {
           label: "Sim",
           onClick: async () => {
+            var nomeLower = person.nome.toLowerCase();
+            var emailLower = person.email.toLowerCase();
+
             const response = await api.put(`/people/update/${person.id}`, {
-              nome: person.nome,
+              nome: nomeLower,
               cpf: person.cpf,
               idade: person.idade,
               sexo: person.sexo,
               telefone: person.telefone,
-              email: person.email,
+              email: emailLower,
               ativo: person.ativo
             });
-        
+
             if (response.data.message === "Person has been updated") {
               Notifications("success", "Cadastro alterado com sucesso!");
               this.loadPerson();
             } else if (response.data.error === "CPF already exists") {
-              Notifications("warning", "O CPF digitado já está cadastrado, verifique!");
+              Notifications(
+                "warning",
+                "O CPF digitado já está cadastrado, verifique!"
+              );
             } else if (response.data.error === "Invalid cpf") {
               Notifications("warning", "O CPF digitado é inválido, verifique!");
             } else if (response.data.error === "Email already exists") {

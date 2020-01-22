@@ -23,7 +23,7 @@ function CreatePerson() {
   async function handleAddPerson(e) {
     //Preve o comportamento padrao do submit não deixando redirecionar para uma nova pagina
     e.preventDefault();
-    
+
     //Chama  a biblioteca de alert antes de chamar a rota de Create da API
     confirmAlert({
       title: "Atenção",
@@ -32,17 +32,19 @@ function CreatePerson() {
         {
           label: "Sim",
           onClick: async () => {
+            var nomeLower = nome.toLowerCase();
+            var emailLower = email.toLowerCase();
             //Se o usuario clicar SIM chamar a rota de Create da API
             const response = await api.post("/people/create", {
-              nome,
+              nome: nomeLower,
               cpf,
               idade,
               sexo,
               telefone,
-              email,
+              email: emailLower,
               ativo
             });
-            
+
             //Se a resposta for de sucesso, apresenta na tela a notificação de sucesso e esvazia os states
             if (response.data.message === "Person successfully inserted") {
               Notifications("success", "Cadastro efetuado com sucesso!");
@@ -53,26 +55,29 @@ function CreatePerson() {
               setTelefone("");
               setEmail("");
               setAtivo("");
-            //Se a resposta for de erro, apresenta na tela a notificação de erro referente
+              //Se a resposta for de erro, apresenta na tela a notificação de erro referente
             } else if (response.data.error === "CPF already exists") {
-              Notifications("warning", "O CPF digitado já está cadastrado, verifique!");
-            //Se a resposta for de erro, apresenta na tela a notificação de erro referente
+              Notifications(
+                "warning",
+                "O CPF digitado já está cadastrado, verifique!"
+              );
+              //Se a resposta for de erro, apresenta na tela a notificação de erro referente
             } else if (response.data.error === "Invalid cpf") {
-            //Se a resposta for de erro, apresenta na tela a notificação de erro referente
+              //Se a resposta for de erro, apresenta na tela a notificação de erro referente
               Notifications("warning", "O CPF digitado é inválido, verifique!");
             } else if (response.data.error === "Email already exists") {
-            //Se a resposta for de erro, apresenta na tela a notificação de erro referente
+              //Se a resposta for de erro, apresenta na tela a notificação de erro referente
               Notifications(
                 "warning",
                 "O Email digitado já está cadastrado, verifique!"
               );
-            //Se a resposta for de erro, apresenta na tela a notificação de erro referente
+              //Se a resposta for de erro, apresenta na tela a notificação de erro referente
             } else if (response.data.error) {
               Notifications(
                 "error",
                 `Ops, Page: Create person, ERROR: ${response.data.error}`
               );
-            //Se a resposta for de erro, apresenta na tela a notificação de erro referente
+              //Se a resposta for de erro, apresenta na tela a notificação de erro referente
             } else {
               Notifications(
                 "error",
@@ -83,27 +88,30 @@ function CreatePerson() {
         },
         {
           label: "Não",
-            //Se o usuario clicar NAO fecha a tela de alerta
+          //Se o usuario clicar NAO fecha a tela de alerta
           onClick: () => {}
         }
       ]
     });
-    
   }
-
-  
 
   return (
     <div id="app">
       <strong>Cadastrar</strong>
-      <form onSubmit={handleAddPerson}/*Executa a funcao handleAddPerson no submit do form*/>
+      <form
+        onSubmit={
+          handleAddPerson
+        } /*Executa a funcao handleAddPerson no submit do form*/
+      >
         <div className="input-block">
           <label htmlFor="nome">Nome:</label>
           <input
             name="nome"
             id="nome"
             value={nome} /*Valor do input é o que estiver no state*/
-            onChange={e => setNome(e.target.value)} /*A cada mudança no input muda o valor do state referente a esse input*/
+            onChange={e =>
+              setNome(e.target.value)
+            } /*A cada mudança no input muda o valor do state referente a esse input*/
             required
           />
         </div>
@@ -198,7 +206,11 @@ function CreatePerson() {
           </select>
         </div>
         <div className="button-group">
-          <Link to={"/"} /*Utiliza um componento da bibliotec react-route-dom, para redirecionar para a pagina em questao ao clicar no botao*/> 
+          <Link
+            to={
+              "/"
+            } /*Utiliza um componento da bibliotec react-route-dom, para redirecionar para a pagina em questao ao clicar no botao*/
+          >
             <button type="button" className="btnReturn">
               Voltar
             </button>

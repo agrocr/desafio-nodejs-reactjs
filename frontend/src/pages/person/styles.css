@@ -1,0 +1,53 @@
+.person {
+  max-width: 700px;
+  margin: 20px auto 0;
+  padding: 20px;
+}
+
+.person-info {
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.person-info h1 {
+  font-size: 32px;
+  text-transform: capitalize;
+  padding-bottom: 10px;
+}
+
+.person-info p {
+  color: #666;
+  line-height: 24px;
+  margin-top: 5px;
+}
+
+.person .return {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.person .return .linkReturn {
+  padding-right: 5px;
+}
+
+.person .return .linkEdit {
+  padding-left: 5px;
+}
+
+.person .return button {
+  padding: 10px;
+  border-radius: 3px;
+  border: 0;
+  background: #024795;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.person .return button:hover {
+  opacity: 0.75;
+}

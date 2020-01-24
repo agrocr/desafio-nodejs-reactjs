@@ -1,0 +1,120 @@
+.people {
+  max-width: 500px;
+  margin: 20px auto 0;
+  padding: 0 20px;
+}
+
+.people-list article {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.people-list article strong {
+  text-transform: uppercase;
+}
+
+.people-list article p {
+  font-size: 16px;
+  color: #999;
+}
+
+.people-list article a {
+  height: 42px;
+  border-radius: 3px;
+  border: 2px solid #024795;
+  background: none;
+  margin-top: 10px;
+  color: #024795;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.people-list article a:hover {
+  background: #024795;
+  color: #fff;
+}
+
+.people .actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.people .actions button {
+  padding: 10px;
+  border-radius: 3px;
+  border: 0;
+  background: #024795;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.people .actions label {
+  padding: 10px;
+  border-radius: 3px;
+  border: 0;
+  color: #024795;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.people .actions button[disabled] {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.people .actions button:hover {
+  opacity: 0.75;
+}
+
+.people .actions button[disabled]:hover {
+  opacity: 0.5;
+}
+
+.people .person {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px 0 20px 0;
+  padding: 0;
+}
+
+.people .person button {
+  padding: 10px;
+  border-radius: 3px;
+  border: 0;
+  background: #024795;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.people .person form {
+  padding: 0px;
+}
+
+.people .person form input {
+  height: 100%;
+  font-size: 14px;
+  background-color: #fafafa;
+  color: #666;
+  border: 0;
+  border-bottom: 1px solid #eee;
+}
+.people .person form button {
+  margin-left: 10px;
+}
+
+.people .person button:hover {
+  opacity: 0.75;
+}

@@ -1,65 +1,35 @@
-# Desafio: node.js, postgres, react.js
+# INSTRUÇÕES INICIAIS
 
-#### Objetivo:
+1 - INSTALAR DEPENDENCIAS:
 
-Desenvolver uma API Restful utilizando Node.js. E criar uma interface utilizando ReactJS para consumir a API Restful criada.
+- Pelo terminal/CMD, dentro da pasta /backend execute o comando "npm install"
+- Pelo terminal/CMD, dentro da pasta /frontend execute o comando "npm install"
 
-#### Desafio:
+2 - CRIAR BASE DE DADOS:
 
-- Implementar em Node.js uma API Restful com as funcionalidades abaixo.
+- Execute o comando SQL, no seu SGBD, que encontra-se na pasta /backend/schema/scripts
+- Pelo terminal/CMD, dentro da pasta "/backend" execute o comando "npx sequelize db:migrate"
 
-- Gerenciar pessoas
-  - Listar (e filtrar quais pessoas)
-  - Adicionar
-  - Editar
-  - Excluir
+# CRIA ARQUIVO DE VARIAVES DE AMBIENTE (.env)
 
-- Realizar validação de dados no backend.
-  - Caso o servidor retorne erro, apresentá-lo amigavelmente ao usuário.
+- Crie um arquivo com o nome ".env" (sem as aspas) dentra da pasta raiz do backend (/backend)
 
-#### Instruções:
+- Copie o conteudo abaixo, preencha com os dados do seu banco de dados e cole dentro do arquivo ".env"
 
-1. Faça um fork deste projeto.
-2. Crie uma branch com o padrão `seunome-desafio`.
-3. Criar uma pasta Schema e colocar os scripts do database.
-4. Ao finalizar este desafio, enviar um pull request com suas alterações e envie um e-mail para contato@agrocr.com.br com o link do pull request.
+#Banco de dados
 
-### Front-end
+DB_HOST=localhost
 
-O front-end deverá ser usado ReactJS com suas ferramentas.
+DB_PORT=5432
 
-#### Regras do front-end
+DB_NAME=
 
-- Você pode criar quantos arquivos JS e CSS forem necessários
-- Você __não pode__ criar novos arquivos html
-- O stack do front-end __deve obrigatoriamente__ ser JS + CSS + HTML, nada mais
-- Toda a comunicação com o banco ou o back end deve ser feita por meio da API desenvolvida por vocês
-- Tentem não colocar lógica de negócio no front-end porque é muito fácil de ser alterada por qualquer um, devolva apenas respostas na API e monte o HTML no front-end
+DB_USERNAME=
 
-### Banco de dados
+DB_PASS=
 
-Deve obrigatoriamente usar Postgresql.
+# INICIAR SERVIDORES
 
-## Regras gerais do projeto
+1 - Pelo terminal/CMD, dentro da pasta /backend execute o comando "npm start"
 
-- É permitido o uso somente: React
-- Não versione a pasta `node_modules`
-- Todos os arquivos devem conter os comentários no código sobre o que aquele trecho faz, isto facilita muito a correção
-- Tempo máximo para o desafio é de 2 dias, 48 horas.
-
-#### Diferenciais:
-
-- Legibilidade;
-- Uso de bibliotecas como sequelize e outras;
-- Boa documentação;
-- Testes automatizados
-
-#### Contato:
-
-- contato@agrocr.com.br
-
----
-
-Em caso de dúvidas, [abra uma issue](https://github.com/agrocr/desafio-nodejs-reactjs/issues)
-
-Boa sorte e abç.
+2 - Pelo terminal/CMD, dentro da pasta /frontend execute o comando "npm start"

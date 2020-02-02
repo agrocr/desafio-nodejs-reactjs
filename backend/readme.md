@@ -19,9 +19,9 @@ To start the API, run the following
 ````
  Each resource made available by api has its own url, and these are listed below:
 
--  [Create (store) Person](/documentation/storePerson.md)
--  [Show Person](/documentation/showPerson.md)
--  [Index People](/documentation/indexPeople.md)
--  [Update Person](/documentation/updatePerson.md)
--  [Delete Person](/documentation/deletePerson.md)
+-  [Create (store) Person](/backend/documentation/storePerson.md)
+-  [Show Person](/backend/documentation/showPerson.md)
+-  [Index People](/backend/documentation/indexPeople.md)
+-  [Update Person](/backend/documentation/updatePerson.md)
+-  [Delete Person](/backend/documentation/deletePerson.md)
 

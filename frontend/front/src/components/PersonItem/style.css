@@ -22,8 +22,9 @@ li.person_item .person_info {
   margin-top: 15px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  overflow: hidden;
 }
 
 li.person_item .actions {
@@ -40,20 +41,18 @@ li.person_item .actions button {
   font-size: 16px;
   font-weight: bold;
   color: #fff;
-  cursor: pointer;
+
   transition: background 0.3s;
 }
 
 .btn_upt {
   background: #4096e7;
   margin-right: 5px;
-}
-
-.btn_upt:hover {
-  background: #406de7;
+  cursor: default;
 }
 
 .btn_dtr {
+  cursor: pointer;
   background: #e75940;
 }
 

@@ -14,10 +14,6 @@ function PersonItem(props) {
     setPeople([...peopleUpdated]);
   }
 
-  function changeRender(data) {
-    updatePerson(data);
-  }
-
   return (
     <li className="person_item">
       <header>
@@ -32,9 +28,6 @@ function PersonItem(props) {
         <strong className="person_gender">Idade: {person.age} anos</strong>
       </div>
       <div className="actions">
-        <button className="btn_upt" onClick={() => changeRender(person)}>
-          Editar
-        </button>
         <button
           className="btn_dtr"
           onClick={() => handleDeletePerson(person.id)}

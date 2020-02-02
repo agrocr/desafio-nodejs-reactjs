@@ -6,7 +6,6 @@ import "./Main.css";
 import api from "./services/api";
 import PersonItem from "./components/PersonItem";
 import PersonForm from "./components/PersonForm";
-import PersonFormUpdate from "./components/PersonFormUpdate";
 
 function App() {
   const [people, setPeople] = useState([]);
@@ -34,14 +33,9 @@ function App() {
       <div className="form">
         <aside>
           <strong>Cadastrar Pessoa</strong>
-          <PersonForm onSubmit={handleAddPerson} update={false} />
-        </aside>
-        <aside className="update_form">
-          <strong>Editar Pessoa</strong>
-          <PersonFormUpdate onSubmit={handleUpdatePerson} person={person} />
+          <PersonForm onSubmit={handleAddPerson} />
         </aside>
       </div>
-
       <main>
         <ul>
           {people.map(person => (

@@ -7,7 +7,7 @@ This is a simple people api, in which you can read, register, update and delete 
  ## Usage
  ### Installing
 ```` 
-	git clone 
+	git clone https://github.com/JadsonBruno/desafio-nodejs-reactjs.git
 	cd [destine-folder]
 ```` 
 ````

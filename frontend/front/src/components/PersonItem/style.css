@@ -1,0 +1,61 @@
+li.person_item {
+  background: #fff;
+  box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.02);
+  border-radius: 2px;
+  padding: 20px;
+}
+
+li.person_item header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+li.person_item header img {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+}
+
+li.person_item .person_info {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+li.person_item .actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+li.person_item .actions button {
+  width: 100%;
+  border: 0;
+  margin-top: 30px;
+  border-radius: 2px;
+  padding: 10px 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+
+  transition: background 0.3s;
+}
+
+.btn_upt {
+  background: #4096e7;
+  margin-right: 5px;
+  cursor: default;
+}
+
+.btn_dtr {
+  cursor: pointer;
+  background: #e75940;
+}
+
+.btn_dtr:hover {
+  background: #e74040;
+}
